@@ -12,6 +12,8 @@ class mdadm::params {
       # Under systemd, the service is called mdmonitor
       if ($operatingsystem == 'Ubuntu' and versioncmp($operatingsystemrelease, '16.04') < 0) or ($operatingsystem == 'Debian' and versioncmp($operatingsystemrelease, '9') < 0) {
         $service_name = 'mdadm'
+      } elsif $operatingsystem == 'Debian' and $operatingsystemmajrelease == '8' {
+        $service_name = 'mdadm-raid'
       } else {
         $service_name = 'mdmonitor'
       }
